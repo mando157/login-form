@@ -1,0 +1,217 @@
+:root {
+    --primary-color: #6C63FF;
+    --hover-color: #5a54d1;
+    --background-color: #0f0f1a;
+    --text-color: #ffffff;
+    --hover-text-color: #4facfe;
+
+    --primary-gradient: linear-gradient(135deg, #6C63FF, #4facfe);
+    --secondary-gradient: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+    --text-gradient: linear-gradient(90deg, #6C63FF, #4facfe);
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    background: var(--secondary-gradient);
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+    margin: 0;
+}
+
+.login {
+    position: relative;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+/* ===== CONTAINERS ===== */
+.login-container,
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+.signup-container {
+    display: none;
+    opacity: 0;
+}
+
+.login-image {
+    width: 400px;
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ===== HEADINGS ===== */
+.login-container h2,
+.signup-container h2 {
+    margin: 20px;
+    font-size: 40px;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ===== INPUTS ===== */
+.login-container input,
+.signup-container input {
+    width: 300px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: white;
+}
+
+.login-container input:focus,
+.signup-container input:focus {
+    outline: none;
+    transform: scale(1.03);
+    border-bottom: 1px solid var(--primary-color);
+}
+
+/* ===== BUTTON ===== */
+.login-container button,
+.signup-container button {
+    width: 300px;
+    padding: 12px;
+    background: var(--primary-gradient);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 15px 0 25px 0;
+}
+
+.login-container button:hover,
+.signup-container button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* ===== LINKS ===== */
+.login-container p {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-container a,
+.signup-container a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: 0.3s;
+}
+
+.login-container a:hover,
+.signup-container a:hover {
+    color: var(--hover-text-color);
+}
+
+/** Sign Up */
+.sign-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.remember #checkbox {
+    margin: 0;
+    width: 12px;
+    height: 12px;
+    accent-color: var(--primary-color);
+}
+
+.remember label {
+    font-size: 14px;
+    color: var(--primary-color);
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+/*! RESPONSIVE */
+@media (max-width: 1024px) {
+
+    .login {
+        gap: 50px;
+    }
+
+    .login-image {
+        width: 350px;
+    }
+
+    .login-container,
+    .signup-container {
+        width: 350px;
+    }
+
+    .login-container h2,
+    .signup-container h2 {
+        font-size: 30px;
+    }
+
+    .login-container input,
+    .signup-container input {
+        width: 250px;
+    }
+
+    .login-container button,
+    .signup-container button {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .login {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .login-container,
+    .signup-container {
+        width: 300px;
+    }
+
+    .login-image {
+        width: 200px;
+    }
+
+}
