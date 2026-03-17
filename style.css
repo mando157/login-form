@@ -92,10 +92,23 @@ body {
 
 .login-container input:focus,
 .signup-container input:focus {
+    background: transparent;
     outline: none;
     transform: scale(1.03);
     border-bottom: 1px solid var(--primary-color);
 }
+
+.login-container input:active,
+.signup-container input:active {
+    background: transparent;
+}
+
+::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+
 
 /* ===== BUTTON ===== */
 .login-container button,
