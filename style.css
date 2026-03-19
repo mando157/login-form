@@ -34,7 +34,7 @@ body {
 .login .login-card {
     position: relative;
     width: 400px;
-    height: 420px;
+    height: 400px;
     overflow: hidden;
 }
 
@@ -112,12 +112,18 @@ body {
 }
 
 /* ===== INPUTS ===== */
-.input-box {
+.login-container .input-box,
+.signup-container .input-box {
     position: relative;
+    display: flex;
+    width: max-content;
+    flex-direction: column;
     margin: 15px auto;
 }
 
-input {
+.login-container input,
+.signup-container input {
+    position: relative;
     width: 300px;
     padding: 5px;
     margin-bottom: 15px;
@@ -127,30 +133,42 @@ input {
     color: white;
 }
 
-input:focus {
+.login-container input:focus,
+.signup-container input:focus {
+    background: transparent;
     outline: none;
     transform: scale(1.03);
     border-bottom: 1px solid var(--primary-color);
 }
 
-label {
+.login-container input:active,
+.signup-container input:active {
+    background: transparent;
+}
+
+.login-container label,
+.signup-container label {
     position: absolute;
     color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
     font-size: 14px;
     top: 0;
     left: 0;
     transition: 0.3s;
 }
 
-input:focus+label,
-input:valid+label {
+.login-container input:focus+label,
+.signup-container input:focus+label,
+.login-container input:valid+label,
+.signup-container input:valid+label {
     top: -10px;
     font-size: 12px;
     color: var(--primary-color);
 }
 
 /* ===== BUTTON ===== */
-button {
+.login-container button,
+.signup-container button {
     width: 300px;
     padding: 12px;
     background: var(--primary-gradient);
@@ -162,7 +180,8 @@ button {
     margin: 15px 0 25px 0;
 }
 
-button:hover {
+.login-container button:hover,
+.signup-container button:hover {
     transform: scale(1.05);
     opacity: 0.9;
 }
@@ -170,20 +189,25 @@ button:hover {
 /* ===== LINKS ===== */
 .login-container p {
     display: flex;
+    gap: 15px;
     justify-content: space-around;
-    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-a {
+.login-container a,
+.signup-container a {
     text-decoration: none;
     color: var(--primary-color);
+    transition: 0.3s;
 }
 
-a:hover {
+.login-container a:hover,
+.signup-container a:hover {
     color: var(--hover-text-color);
 }
 
-/* ===== SIGNUP EXTRA ===== */
+/** Sign Up */
 .sign-content {
     display: flex;
     justify-content: space-around;
@@ -197,7 +221,8 @@ a:hover {
     gap: 5px;
 }
 
-.remember input {
+.remember #checkbox {
+    margin: 0;
     width: 12px;
     height: 12px;
     accent-color: var(--primary-color);
@@ -205,10 +230,83 @@ a:hover {
 
 .remember label {
     position: static;
+    top: auto;
+    left: auto;
+    pointer-events: auto;
+    font-size: 14px;
     color: var(--primary-color);
+    cursor: pointer;
+    margin-left: 3px;
 }
 
-/* ===== RESPONSIVE ===== */
+/** ============== POP UP Styling ============== */
+.login-popup,
+.signup-popup {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: var(--primary-gradient);
+    padding: 5px 20px;
+    border-radius: 0px 15px 55px 15px;
+    transform: translate(-50%, -100%);
+    transition: 0.5s;
+    z-index: 999;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popup-content .popup-text {
+    font-size: 20px;
+    margin: 0;
+}
+
+.popup-content button {
+    padding: 5px 10px;
+    background: var(--secondary-gradient);
+    border: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup-content button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+
+/*! ===== RESPONSIVE ===== !*/
+@media (max-width: 1024px) {
+    .login {
+        gap: 20px;
+    }
+
+    .login-image {
+        width: 350px;
+    }
+
+    .login-container,
+    .signup-container,
+    .login .login-card {
+        width: 350px;
+        height: 350px;
+    }
+
+    .login-container button,
+    .signup-container button {
+        width: 250px;
+    }
+}
+
 @media (max-width: 768px) {
     .login {
         flex-direction: column-reverse;
@@ -217,7 +315,11 @@ a:hover {
 
     .login-card {
         width: 300px;
-        height: 400px;
+    }
+
+    .login-container h2,
+    .signup-container h2 {
+        font-size: 30px;
     }
 
     input,
@@ -228,4 +330,26 @@ a:hover {
     .login-image {
         width: 250px;
     }
+
+    /** ============== POP UP Styling ============== */
+
+    .login-popup,
+    .signup-popup {
+        border-radius: 0 0 15px 15px;
+    }
+
+    .popup-content button {
+        width: 100px;
+    }
+
+    .login-popup lord-icon,
+    .signup-popup lord-icon {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .popup-content .popup-text {
+        font-size: 16px;
+    }
+
 }
