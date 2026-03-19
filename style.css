@@ -336,6 +336,12 @@ body {
     .login-popup,
     .signup-popup {
         border-radius: 0 0 15px 15px;
+        gap: 10px;
+    }
+
+    .popup-content {
+        flex-direction: row;
+        gap: 10px;
     }
 
     .popup-content button {
@@ -350,6 +356,7 @@ body {
 
     .popup-content .popup-text {
         font-size: 16px;
+        text-align: center;
     }
 
 }
