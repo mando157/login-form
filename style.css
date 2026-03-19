@@ -23,34 +23,67 @@ body {
 
 .login {
     position: relative;
-    width: max-content;
-    height: max-content;
+    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 100px;
+}
+
+
+.login .login-card {
+    position: relative;
+    width: 400px;
+    height: 420px;
+    overflow: hidden;
 }
 
 /* ===== CONTAINERS ===== */
 .login-container,
 .signup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    border-radius: 15px;
-    width: 400px;
-    text-align: center;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: 0.3s;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
+.login-container {
+    z-index: 2;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .signup-container {
-    display: none;
     opacity: 0;
+    transform: translateY(-100%);
+    z-index: 1;
 }
 
+.login-card.active .login-container {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.login-card.active .signup-container {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 3;
+}
+
+/* ===== IMAGE ===== */
 .login-image {
     width: 400px;
     animation: float 5s ease-in-out infinite;
@@ -79,10 +112,14 @@ body {
 }
 
 /* ===== INPUTS ===== */
-.login-container input,
-.signup-container input {
+.input-box {
+    position: relative;
+    margin: 15px auto;
+}
+
+input {
     width: 300px;
-    padding: 12px;
+    padding: 5px;
     margin-bottom: 15px;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -90,29 +127,30 @@ body {
     color: white;
 }
 
-.login-container input:focus,
-.signup-container input:focus {
-    background: transparent;
+input:focus {
     outline: none;
     transform: scale(1.03);
     border-bottom: 1px solid var(--primary-color);
 }
 
-.login-container input:active,
-.signup-container input:active {
-    background: transparent;
+label {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    top: 0;
+    left: 0;
+    transition: 0.3s;
 }
 
-::placeholder {
-    color: var(--text-color);
-    opacity: 0.7;
+input:focus+label,
+input:valid+label {
+    top: -10px;
+    font-size: 12px;
+    color: var(--primary-color);
 }
-
-
 
 /* ===== BUTTON ===== */
-.login-container button,
-.signup-container button {
+button {
     width: 300px;
     padding: 12px;
     background: var(--primary-gradient);
@@ -124,8 +162,7 @@ body {
     margin: 15px 0 25px 0;
 }
 
-.login-container button:hover,
-.signup-container button:hover {
+button:hover {
     transform: scale(1.05);
     opacity: 0.9;
 }
@@ -133,25 +170,20 @@ body {
 /* ===== LINKS ===== */
 .login-container p {
     display: flex;
-    gap: 15px;
     justify-content: space-around;
-    margin-top: 10px;
-    font-size: 14px;
+    width: 100%;
 }
 
-.login-container a,
-.signup-container a {
+a {
     text-decoration: none;
     color: var(--primary-color);
-    transition: 0.3s;
 }
 
-.login-container a:hover,
-.signup-container a:hover {
+a:hover {
     color: var(--hover-text-color);
 }
 
-/** Sign Up */
+/* ===== SIGNUP EXTRA ===== */
 .sign-content {
     display: flex;
     justify-content: space-around;
@@ -165,66 +197,35 @@ body {
     gap: 5px;
 }
 
-.remember #checkbox {
-    margin: 0;
+.remember input {
     width: 12px;
     height: 12px;
     accent-color: var(--primary-color);
 }
 
 .remember label {
-    font-size: 14px;
+    position: static;
     color: var(--primary-color);
-    cursor: pointer;
-    margin-left: 3px;
 }
 
-/*! RESPONSIVE */
-@media (max-width: 1024px) {
-
-    .login {
-        gap: 50px;
-    }
-
-    .login-image {
-        width: 350px;
-    }
-
-    .login-container,
-    .signup-container {
-        width: 350px;
-    }
-
-    .login-container h2,
-    .signup-container h2 {
-        font-size: 30px;
-    }
-
-    .login-container input,
-    .signup-container input {
-        width: 250px;
-    }
-
-    .login-container button,
-    .signup-container button {
-        width: 250px;
-    }
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-
     .login {
         flex-direction: column-reverse;
         gap: 20px;
     }
 
-    .login-container,
-    .signup-container {
+    .login-card {
         width: 300px;
+        height: 400px;
+    }
+
+    input,
+    button {
+        width: 250px;
     }
 
     .login-image {
         width: 250px;
     }
-
 }
